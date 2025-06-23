@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="_csrf" th:content="${_csrf.token}" />
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+  <title th:text="${room.name}">Детали номера</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+  <h1 th:text="${room.name}">Название номера</h1>
+  <img th:if="${room.imageUrl != null}" th:src="@{${room.imageUrl}}" alt="Фото номера" class="hotel-image">
+  <p><strong>Цена за ночь:</strong> <span th:text="${room.price}">0</span> ₽</p>
+  <p><strong>Вместимость:</strong> <span th:text="${room.capacity}">0</span> человек</p>
+  <p><strong>Описание:</strong></p>
+  <p th:text="${room.description}">Описание номера</p>
+
+  <div sec:authorize="isAuthenticated()">
+    <div th:if="${#authentication.getPrincipal().getUsername() == room.hotel.owner.email}">
+      <a th:href="@{'/rooms/edit/' + ${room.id}}" class="classic-button">Редактировать</a>
+      <form th:action="@{'/rooms/delete/' + ${room.id}}" method="post" class="inline-form">
+        <button type="submit" class="delete-button">Удалить</button>
+      </form>
+    </div>
+
+    <h3>Забронировать</h3>
+    <form id="bookingForm" class="booking-form">
+      <input type="hidden" name="roomId" th:value="${room.id}" />
+      <label>Дата заезда:</label>
+      <input type="text" id="checkInDate" name="checkInDate" required>
+      <label>Дата выезда:</label>
+      <input type="text" id="checkOutDate" name="checkOutDate" required>
+      <button type="submit" class="classic-button">Забронировать</button>
+    </form>
+    <div id="booking-message" class="message-box"></div>
+
+
+  </div>
+</div>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  const bookedDates = [[${bookedDates}]];
+  /*]]>*/
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script th:src="@{/js/room-booking.js}"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить номер</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="small-container">
+    <h1>Добавить номер</h1>
+    <form th:action="@{'/rooms/new/' + ${hotelId}}" th:object="${roomDto}" method="post" enctype="multipart/form-data">
+        <input type="text" th:field="*{name}" placeholder="Название номера" required>
+        <input type="number" th:field="*{price}" placeholder="Цена за ночь" required>
+        <input type="number" th:field="*{capacity}" placeholder="Вместимость" required>
+        <textarea class="hotel-textarea" th:field="*{description}" placeholder="Описание номера" required></textarea>
+        <input type="file" th:field="*{image}" accept="image/*">
+        <button type="submit" class="classic-button">Сохранить</button>
+    </form>
+</div>
+
+</body>
+</html>

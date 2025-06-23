@@ -1,0 +1,15 @@
+<div th:fragment="header" class="topbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <a th:href="@{/}" class="logo">Островок</a>
+  <nav>
+    <div sec:authorize="isAnonymous()">
+      <a th:href="@{/login}">Вход</a>
+      <a th:href="@{/register}">Регистрация</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+      <a th:href="@{/profile}">Личный кабинет</a>
+      <form th:action="@{/logout}" method="post" class="logout-form">
+        <button type="submit" class="logout-link">Выйти</button>
+      </form>
+    </div>
+  </nav>
+</div>

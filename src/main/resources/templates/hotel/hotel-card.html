@@ -1,0 +1,22 @@
+<div th:fragment="hotelCard(hotel)"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <div class="card">
+        <a th:href="@{'/hotels/' + ${hotel.id}}" class="card-link">
+            <img th:if="${hotel.imageUrl != null}" th:src="@{${hotel.imageUrl}}" alt="Фото отеля" class="image">
+            <h3 th:text="${hotel.name}">Название отеля</h3>
+            <p th:text="${hotel.address}">Адрес</p>
+            <p th:text="${hotel.description}">Описание</p>
+        </a>
+
+        <div sec:authorize="isAuthenticated()">
+            <div th:if="${#authentication.getPrincipal().getUsername() == hotel.owner.email}">
+                <a th:href="@{'/hotels/edit/' + ${hotel.id}}" class="classic-button">Редактировать</a>
+                <form th:action="@{'/hotels/delete/' + ${hotel.id}}" method="post" class="inline-form">
+                    <button type="submit" class="delete-button">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

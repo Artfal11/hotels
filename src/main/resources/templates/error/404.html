@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Страница не найдена</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="small-container">
+  <h2>Ошибка 404</h2>
+  <p>Извините, страница не найдена.</p>
+  <p><a th:href="@{/}">Вернуться на главную</a></p>
+</div>
+</body>
+</html>

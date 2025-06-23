@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+  <h1>Поиск отелей</h1>
+
+  <form th:action="@{/}" method="get">
+    <input type="text" name="query" placeholder="Введите адрес или название" th:value="${query}">
+    <button type="submit" class="classic-button">Найти</button>
+  </form>
+
+  <div class="grid">
+    <div th:each="hotel : ${hotels}">
+      <div th:replace="~{hotel/hotel-card :: hotelCard(hotel=${hotel})}"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

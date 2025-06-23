@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+  <h1>Мои бронирования</h1>
+
+  <div th:if="${#lists.isEmpty(bookings)}">
+    <p>Вы пока не сделали ни одной брони.</p>
+  </div>
+
+  <div th:if="${!#lists.isEmpty(bookings)}">
+    <div class="grid">
+      <div th:each="booking : ${bookings}" class="card">
+        <h3 th:text="${booking.room.hotel.name}">Название отеля</h3>
+        <img th:if="${booking.room.imageUrl != null}" th:src="@{${booking.room.imageUrl}}" alt="Фото номера" class="image">
+        <p><strong>Номер:</strong> <span th:text="${booking.room.name}">Стандарт</span></p>
+        <p><strong>Адрес:</strong> <span th:text="${booking.room.hotel.address}">Город, улица</span></p>
+        <p><strong>Стоимость:</strong> <span th:text="${booking.totalPrice}">10000</span></p>
+        <p><strong>Заезд:</strong> <span th:text="${booking.checkInDate}">2025-06-01</span></p>
+        <p><strong>Выезд:</strong> <span th:text="${booking.checkOutDate}">2025-06-03</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

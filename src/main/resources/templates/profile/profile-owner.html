@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+  <h1>Личный кабинет</h1>
+
+  <div th:if="${#lists.isEmpty(hotels)}">
+    <p>У вас пока нет зарегистрированных отелей.</p>
+  </div>
+
+  <div th:if="${!#lists.isEmpty(hotels)}">
+    <h2>Мои отели</h2>
+    <div class="grid">
+      <div th:each="hotel : ${hotels}">
+        <div th:replace="~{hotel/hotel-card :: hotelCard(hotel=${hotel})}"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="centered-button">
+    <a th:href="@{/hotels/new}">
+      <button class="classic-button register-hotel-button">Зарегистрировать новый отель</button>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

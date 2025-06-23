@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+    --primary-color: rgb(172, 239, 129);
+    --primary-hover: rgb(152, 219, 109);
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --white: #fff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container,
+.small-container {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.small-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 100px auto;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.classic-button {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 8px;
+}
+
+.classic-button:hover {
+    text-decoration: none;
+    background-color: var(--primary-hover);
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.topbar {
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar .logo {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.topbar .logo:hover {
+    text-decoration: none;
+}
+
+.topbar nav a {
+    margin-left: 20px;
+    color: var(--text-color);
+}
+
+.card img.image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+img.hotel-preview {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.hotel-textarea {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.register-hotel-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-link:hover {
+    text-decoration:none;
+}
+
+.logout-form {
+    display: inline;
+}
+
+.logout-link {
+    font-size: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 20px;
+    color: var(--text-color);
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+}

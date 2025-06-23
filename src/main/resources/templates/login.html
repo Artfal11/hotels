@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="small-container">
+    <h2>Вход</h2>
+
+    <div th:if="${loginError}" class="error-message">
+        <p th:text="${loginError}"></p>
+    </div>
+
+    <div th:if="${accessDenied}" class="error-message">
+        <p th:text="${accessDenied}"></p>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button class="classic-button" type="submit">Войти</button>
+    </form>
+    <p>Нет аккаунта? <a th:href="@{/register}">Зарегистрируйтесь</a></p>
+</div>
+</body>
+</html>

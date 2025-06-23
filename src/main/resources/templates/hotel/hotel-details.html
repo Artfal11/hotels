@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${hotel.name}">Информация об отеле</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <h1 th:text="${hotel.name}">Название отеля</h1>
+
+    <div class="hotel-card">
+        <img th:if="${hotel.imageUrl != null}" th:src="@{${hotel.imageUrl}}" alt="Фото отеля" class="hotel-image hotel-preview"/>
+
+        <p><strong>Адрес:</strong> <span th:text="${hotel.address}">Адрес</span></p>
+        <p><strong>Описание:</strong></p>
+        <p th:text="${hotel.description}">Описание</p>
+
+        <div sec:authorize="isAuthenticated()">
+            <div th:if="${#authentication.getPrincipal().getUsername() == hotel.owner.email}">
+                <a th:href="@{'/rooms/new/' + ${hotel.id}}" class="classic-button">Добавить номер</a>
+            </div>
+        </div>
+    </div>
+
+    <h2>Номера</h2>
+
+    <div th:if="${rooms.isEmpty()}">
+        <p>У отеля пока нет номеров.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(rooms)}">
+        <div class="grid">
+            <div th:each="room : ${rooms}">
+                <div th:replace="~{room/room-card :: roomCard(room=${room})}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
